@@ -22,7 +22,7 @@
 
 #import "NSObject+SLAccessibilityDescription.h"
 #import "SLStringUtilities.h"
-
+#import "SLAccessibilityPath.h"
 #import <UIKit/UIKit.h>
 
 @implementation NSObject (SLAccessibilityDescription)

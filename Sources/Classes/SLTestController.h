@@ -143,8 +143,14 @@
  */
 @property (nonatomic) BOOL shouldWaitToStartTesting;
 
-@end
+/**
+ This method will dump the native and JavaScript representations of the accessibility
+ hierarchy. This is here only for debugging purposes and probably shouldn't be left in
+ actual running tests.
+ */
++ (void) dumpFullElementTree;
 
+@end
 
 #pragma mark - Constants
 

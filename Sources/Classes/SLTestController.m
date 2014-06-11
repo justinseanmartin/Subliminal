@@ -30,6 +30,7 @@
 #import "SLElement.h"
 #import "SLAlert.h"
 #import "SLDevice.h"
+#import "SLAccessibilityPath.h"
 
 #import "SLStringUtilities.h"
 
@@ -235,6 +236,10 @@ u_int32_t random_uniform(u_int32_t upperBound) {
     if (shouldWaitToStartTesting != _shouldWaitToStartTesting) {
         _shouldWaitToStartTesting = shouldWaitToStartTesting;
     }
+}
+
++ (void)dumpFullElementTree {
+    [[[UIApplication sharedApplication] keyWindow] slDumpAllDescendantAccessibilityElements];
 }
 
 // In certain environments like Travis, `instruments` intermittently hangs.

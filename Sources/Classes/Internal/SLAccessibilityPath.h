@@ -44,6 +44,11 @@
  */
 - (SLAccessibilityPath *)slAccessibilityPathToElement:(SLElement *)element;
 
+/**
+ This is for debugging only
+ */
+- (void)slDumpAllDescendantAccessibilityElements;
+
 @end
 
 
