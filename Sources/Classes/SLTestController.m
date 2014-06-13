@@ -242,6 +242,34 @@ u_int32_t random_uniform(u_int32_t upperBound) {
     [[[UIApplication sharedApplication] keyWindow] slDumpAllDescendantAccessibilityElements];
 }
 
++ (void)testAccessibilityPath:(SLAccessibilityPath *)path {
+    NSString *pathAsString = [path UIARepresentation];
+
+    if ([(NSString *)[[SLTerminal sharedTerminal] eval:[[NSString alloc] initWithFormat:@"%@.isValid()", pathAsString]] boolValue]) {
+        return;
+    }
+
+    NSString *fullPath = pathAsString;
+
+    for (int itemsToExclude = 1; itemsToExclude < path.countOfElementsInPath; itemsToExclude++) {
+        pathAsString = [path UIARepresentationExcludingElementsFromTheEnd:itemsToExclude];
+
+        if ([(NSString *)[[SLTerminal sharedTerminal] eval:[[NSString alloc] initWithFormat:@"%@.isValid()", pathAsString]] boolValue]) {
+            SLLog(@"PARTIAL PATH FOUND: %@ OF FULL PATH: %@", pathAsString, fullPath);
+            [[SLTerminal sharedTerminal] eval:[[NSString alloc] initWithFormat:@"%@.logElementTree()", pathAsString]];
+            SLLog(@"%@", [path recursiveDescriptionExcludingPathElementsFromTheEnd:itemsToExclude]);
+
+            return;
+        }
+    }
+
+    SLLog(@"NONE OF PATH FOUND: %@, FULL PATH: %@", pathAsString, fullPath);
+    [[SLTerminal sharedTerminal] eval:@"UIATarget.localTarget().logElementTree()"];
+    SLLog(@"%@", [path recursiveDescriptionExcludingPathElementsFromTheEnd:path.countOfElementsInPath]);
+
+    return;
+}
+
 // In certain environments like Travis, `instruments` intermittently hangs.
 // When this occurs, it seems that the simulator is also in an inconsistent state
 // such that it can't be rotated, web pages don't load, etc.

@@ -529,10 +529,14 @@ static const void *const kUseSLReplacementIdentifierKey = &kUseSLReplacementIden
 }
 
 - (NSString *)UIARepresentation {
+    return [self UIARepresentationExcludingElementsFromTheEnd:0];
+}
+
+- (NSString *)UIARepresentationExcludingElementsFromTheEnd:(int)numberToExclude {
     __block NSMutableString *uiaRepresentation = [@"UIATarget.localTarget().frontMostApp()" mutableCopy];
     dispatch_sync(dispatch_get_main_queue(), ^{
-        for (SLMainThreadRef *objRef in _accessibilityElementPath) {
-            NSObject *obj = [objRef target];
+        for (int i = 0; i < _accessibilityElementPath.count - numberToExclude; i++) {
+            NSObject *obj = [[_accessibilityElementPath objectAtIndex:i] target];
 
             // see note on +mapPathToBackgroundThread:
             // we only throw a fatal exception if there *are* objects in the path
@@ -547,6 +551,21 @@ static const void *const kUseSLReplacementIdentifierKey = &kUseSLReplacementIden
         }
     });
     return uiaRepresentation;
+}
+
+- (int)countOfElementsInPath {
+    return _accessibilityElementPath.count;
+}
+
+- (NSString *)recursiveDescriptionExcludingPathElementsFromTheEnd:(int)numberToExclude {
+    __block NSString *description;
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        int index = _accessibilityElementPath.count - numberToExclude;
+        description = [[[_accessibilityElementPath objectAtIndex:index] target] slRecursiveAccessibilityDescription];
+    });
+
+    return description;
 }
 
 @end

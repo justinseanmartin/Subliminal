@@ -20,6 +20,7 @@
 //  limitations under the License.
 //
 
+#import "SLTestController.h"
 #import "SLElement.h"
 #import "SLUIAElement+Subclassing.h"
 #import "NSObject+SLAccessibilityHierarchy.h"
@@ -222,6 +223,8 @@ UIAccessibilityTraits SLUIAccessibilityTraitAny = 0;
         [accessibilityPath bindPath:^(SLAccessibilityPath *boundPath) {
             // catch and rethrow exceptions so that we can unbind the path
             @try {
+                [SLTestController testAccessibilityPath:boundPath];
+                
                 NSString *UIARepresentation = [boundPath UIARepresentation];
 
                 if (self.shouldDoubleCheckValidity) {

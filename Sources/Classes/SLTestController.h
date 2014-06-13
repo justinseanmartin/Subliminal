@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class SLAccessibilityPath;
 
 /**
  `SLTestController` coordinates test execution. Its singleton instance
@@ -144,11 +145,22 @@
 @property (nonatomic) BOOL shouldWaitToStartTesting;
 
 /**
- This method will dump the native and JavaScript representations of the accessibility
+ Dumps the native and JavaScript representations of the accessibility
  hierarchy. This is here only for debugging purposes and probably shouldn't be left in
  actual running tests.
+ 
+ NOTE: It swizzles all of the accessibility hierarchy, so if executing this from the
+ debug console, make sure it during a call to -[SLAccessibilityPath bindPath].
  */
-+ (void) dumpFullElementTree;
++ (void)dumpFullElementTree;
+
+/**
+ A debug method that ensures that the accessibility hierarchy is well-formed. It is 
+ intended to be used to check the swizzled accessibility path within the block callback
+ from -[SLAccessibilityPath bindPath]. It does currently disturb the SLAccessibilityPath 
+ object itself, because the object isn't copyable.
+ */
++ (void)testAccessibilityPath:(SLAccessibilityPath *)path;
 
 @end
 
