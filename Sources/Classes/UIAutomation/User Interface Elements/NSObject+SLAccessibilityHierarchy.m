@@ -350,7 +350,11 @@
     // table view headers--which need not themselves be accessible to be mocked
     // (so long as they contain accessible elements)
     // and, unlike table view cells, are not necessarily of any particular class
-    if ([[self slAccessibilityParent] isKindOfClass:[UITableView class]]) return YES;
+    if ([[self slAccessibilityParent] isKindOfClass:[UITableView class]] &&
+          (self == ((UITableView *)[self slAccessibilityParent]).tableHeaderView ||
+           self == ((UITableView *)[self slAccessibilityParent]).tableFooterView)) {
+        return YES;
+    }
 
     return NO;
 }

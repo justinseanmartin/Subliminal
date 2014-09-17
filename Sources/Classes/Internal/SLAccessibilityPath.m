@@ -422,7 +422,7 @@ static const void *const kUseSLReplacementIdentifierKey = &kUseSLReplacementIden
             destination = [filteredAccessibilityElementPath lastObject];
         }
 
-        _accessibilityElementPath = [[self class] mapPathToBackgroundThread:filteredAccessibilityElementPath];
+        _accessibilityElementPath = [[self class] mapPathToBackgroundThread:filteredViewPath];
         _destinationRef = [SLMainThreadRef refWithTarget:destination];
     }
     return self;
