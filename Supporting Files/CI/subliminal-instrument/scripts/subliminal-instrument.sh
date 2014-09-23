@@ -58,6 +58,7 @@ fi
 BUILD_OUTPUT_DIR_TOOL_PATH="$SI_DIR"/scripts/build_output_dir.sh
 BUILD_OUTPUT_DIR=$("$BUILD_OUTPUT_DIR_TOOL_PATH")
 SI_PATH="$BUILD_OUTPUT_DIR"/Products/Release/subliminal-instrument
+DYLD_INSERT_LIBRARIES="${SI_DIR}"/NoAlertsForInstruments.dylib
 
 WATCHDOG_TOOL_PATH="$SI_DIR"/scripts/watchdog.sh
 

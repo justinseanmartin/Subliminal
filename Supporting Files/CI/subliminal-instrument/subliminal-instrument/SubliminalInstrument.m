@@ -109,7 +109,7 @@
 
     // Make sure that instruments exits when we do
     NSTask *launchTask = [NSTask watchdogTaskForTask:instrumentsTask];
-
+    
     for (SIReporter *reporter in _options.reporters) {
         [reporter beginReportingWithStandardOutput:self.standardOutput
                                      standardError:self.standardError];

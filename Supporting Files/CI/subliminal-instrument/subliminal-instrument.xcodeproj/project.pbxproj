@@ -25,7 +25,7 @@
 		F0CFFE53188CED2A009FEB8B /* SISLLogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CFFE52188CED2A009FEB8B /* SISLLogParser.m */; };
 		F0CFFE56188CEE89009FEB8B /* SIReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CFFE55188CEE89009FEB8B /* SIReporter.m */; };
 		F0CFFE59188CEEE8009FEB8B /* SITerminalReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CFFE58188CEEE8009FEB8B /* SITerminalReporter.m */; };
-		F0D8A11D188DDCF400C90E41 /* watchdog.sh in Copy watchdog.sh */ = {isa = PBXBuildFile; fileRef = F0D8A119188DD8A700C90E41 /* watchdog.sh */; };
+		F0D8A11D188DDCF400C90E41 /* watchdog.sh in Copy watchdog */ = {isa = PBXBuildFile; fileRef = F0D8A119188DD8A700C90E41 /* watchdog.sh */; };
 		F0E9224018A087C200E59B1D /* SIFileReportWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E9223F18A087C200E59B1D /* SIFileReportWriter.m */; };
 		F0F5DB9018C2F12B006BC976 /* SubliminalInstrumentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F5DB8F18C2F12B006BC976 /* SubliminalInstrumentTests.m */; };
 		F0F5DB9418C302DB006BC976 /* SubliminalInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = F0CFFE4B188CBE38009FEB8B /* SubliminalInstrument.m */; };
@@ -127,15 +127,15 @@
 			name = "Copy man page";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		F0D8A11C188DDCD900C90E41 /* Copy watchdog.sh */ = {
+		F0D8A11C188DDCD900C90E41 /* Copy watchdog */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				F0D8A11D188DDCF400C90E41 /* watchdog.sh in Copy watchdog.sh */,
+				F0D8A11D188DDCF400C90E41 /* watchdog.sh in Copy watchdog */,
 			);
-			name = "Copy watchdog.sh";
+			name = "Copy watchdog";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -359,7 +359,7 @@
 			buildPhases = (
 				F026C417188A1279006B7DB0 /* Sources */,
 				F026C418188A1279006B7DB0 /* Frameworks */,
-				F0D8A11C188DDCD900C90E41 /* Copy watchdog.sh */,
+				F0D8A11C188DDCD900C90E41 /* Copy watchdog */,
 				F0D8A11E188DDDD900C90E41 /* Make watchdog.sh executable */,
 				F026C419188A1279006B7DB0 /* Copy man page */,
 			);
@@ -662,6 +662,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "subliminal-instrument/subliminal-instrument-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -671,6 +675,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "subliminal-instrument/subliminal-instrument-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
